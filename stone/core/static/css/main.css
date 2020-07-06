@@ -86,4 +86,12 @@ body {
   .btn { 
     padding: .30rem .40rem;
   }
- 
+
+
+  button, input, optgroup, select, textarea, a {
+    margin: 5px;
+}
+
+.mb-2, .my-2 {
+  margin-bottom: 0.3rem !important;
+}

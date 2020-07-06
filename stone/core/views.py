@@ -35,6 +35,16 @@ class ErrorABCView(ABC):
 class ErrorListView(LoginRequiredMixin, ErrorABCView, ListView):
     template_name = 'core/home.html'
     context_object_name = 'errors'
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        filter_val = self.request.GET.get('enviroment')
+        order = self.request.GET.get('orderby')
+        if filter_val and order:
+            queryset = Error.objects.filter(
+                enviroment=filter_val
+                ).order_by(f'{order}' if order == 'level' else f'-{order}')
+        return queryset
    
 
 class ErrorDetailView(LoginRequiredMixin, ErrorABCView, DetailView):
