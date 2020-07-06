@@ -1,0 +1,56 @@
+{% extends "core/base.html" %}
+
+{% block content%}
+    <form action="{% url 'core:error-delete-section' %}" method="POST">
+        {% csrf_token %}
+        <div class="col-md-9">
+            <label>Action: <select name="action" required="">
+            <option value="" selected="">---------</option>
+            <option value="delete_selected">Delete selected errors</option>
+            </select></label><input type="hidden" name="select_across" value="0" class="select-across">
+            <button type="submit" class="btn btn-primary">Go</button>
+        </div>
+        <div class="col-md-9">
+            <table class="table table-striped table-bordered">
+                <div class="col-md-3">
+                    <a class="btn btn-primary btn-block" href="{% url 'core:error-create' %}">Add Error</a><br>
+                </div>
+                <thead>
+                    <tr>
+                        <th scope="col" class="action-checkbox-column">
+                            <div class="text"><span>
+                                <input type="checkbox" id="action-toggle" onclick="error_toggle(this)"></span>
+                            </div>
+                            <div class="clear"></div>
+                        </th>
+                        <th>level</th>
+                        <th>log</th>
+                        <th>events</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for error in errors %}
+                        <tr>
+                            <td><input type="checkbox" name="error" value="{{ error.id }}"></td>
+                            <td>{{ error.level }}</td>
+                            <td>{{ error.log }}</td>
+                            <td>{{ error.events }}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a href="{% url 'core:error-update' error.pk%}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan=5 class="text-center">
+                                There is no products to be listened.
+                            </td>
+                        </tr>    
+                    {% endfor%}    
+                </tbody>
+            </table>
+        </div>
+    </form>
+{% endblock content %}    
