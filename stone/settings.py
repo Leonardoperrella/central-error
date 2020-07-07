@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_extensions',
     'stone.core',
+    'stone.api',
     
 ]
 
