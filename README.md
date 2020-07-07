@@ -55,17 +55,19 @@ python manage.py migrate
 ```
 ### URLS WEB
 
-|---------------------------------------|
-| Description       | URLS              |
-|---------------------------------------|
-| Home              | /                 |
-| Register User     | /register/        |
-| Login             | /login/           |
-| LogOut            | /logout/          |
-| Error Create      | /create/          |
-| Error Detail      | /detail/{id}/     |      
-| Error Update      | /update/{id}/     |
-|---------------------------------------|
+|-----------------------------------------------|
+| Description           | URLS                  |
+|-----------------------------------------------|
+| Home                  | /                     |
+| Register User         | /register/            |
+| Login                 | /login/               |
+| LogOut                | /logout/              |
+| Admin                 | /admin/               |
+| Error Create          | /create/              |
+| Error Detail          | /detail/{id}/         |      
+| Error Update          | /update/{id}/         |
+| Error Delete Section  | /delete-error-section/|
+|_______________________________________________|
 
 
 ### EndPoints and Verbs API
