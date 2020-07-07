@@ -1,7 +1,8 @@
 # Acelera Dev - Python - Stone
 
 ## Description
-    The main objective of this project is to create an aplicantion for registration of vendor catalogues.
+    The main objective of this project is to create an aplicantion for registration of errors
+    systems.
 
 ## Requirements and Resources Used.
 
