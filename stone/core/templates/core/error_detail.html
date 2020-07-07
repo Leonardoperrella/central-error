@@ -3,16 +3,14 @@
 {% block content %}
 <!-- OVERVIEW -->
 <section>
+    <h2>Error Detail</h2>
     <div class="content row padding-bottom-3 desktop-12 container">
-        <h1>Error Detail</h1>
-        <div class="desktop-6">
-            <ul>
-                <li>Enviroment: {{ error.enviroment }}</li>
-                <li>Level: {{ error.level }}</li>
-                <li>Log: {{ error.log }}</li>
-                <li>Events: {{ error.events }}</li>
-            </ul>
-        </div>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Enviroment: </strong>{{ error.enviroment }}</li>
+            <li class="list-group-item"><strong>Level: </strong>{{ error.level }}</li>
+            <li class="list-group-item"><strong>Log: </strong>{{ error.log }}</li>
+            <li class="list-group-item"><strong>Events: </strong>{{ error.events }}</li>
+        </ul>
     </div>
 </section>
 {% endblock content %}

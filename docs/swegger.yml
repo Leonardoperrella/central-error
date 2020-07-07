@@ -1,0 +1,338 @@
+openapi: 3.0.0
+info:
+  description: |
+    This is a Api for register errors.
+    [Error APi](https://stone-leonardoperrella.herokuapp.com) or [Git](https://github.com/Leonardoperrella/central-error)
+  version: "1.0.0"
+  title: API Error
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: leonardo.perrella@yahoo.com.br
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+# Added by API Auto Mocking Plugin
+# Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/Leonardoperrella/Petstore/1.0.0
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/Leonardoperrella/Codenation2/1.0.0
+  - url: 'https://petstore.swagger.io/v2'
+tags:
+  - name: API
+    description: Central-Errors
+    externalDocs:
+      description: Find out more
+      url: 'https://github.com/Leonardoperrella/central-error'
+paths:
+  '/auth/token':
+    get:
+      tags:
+        - token
+      summary: Get token
+      responses:
+        '200':
+          description: succefull operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Auth'
+        '400':
+          description: Invalid status value
+  '/users/':
+    get:
+      tags:
+      - users
+      summary: Get all users
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid status value
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      security:
+        - ApiKeyAuth: []
+    post:
+      tags:
+      - users
+      summary: Add a new user
+      operationId: addUser
+      responses:
+        '201':
+          description: User Created
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '405':
+          description: Invalid input
+        '500':
+          description: Server Error
+      requestBody:
+        $ref: '#/components/requestBodies/User'
+      security:
+        - ApiKeyAuth: []
+  '/user/{id}/':
+    get:
+      tags:
+      - users
+      summary: Find user by id
+      description: Returns a single user
+      operationId: getUserById
+      parameters:
+      - name: id
+        in: path
+        description: id of agent to return
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid ID supplied
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          description: Agent not found
+        '500':
+          description: Server Error
+      security:
+        - ApiKeyAuth: []
+    put:
+      tags:
+      - users
+      summary: Update an existing user
+      operationId: updateUser
+      parameters:
+      - name: id
+        in: path
+        description: Users object that needs to be added
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Updeted successfully
+        '400':
+          description: Invalid ID supplied
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          description: User not found
+        '405':
+          description: Validation exception
+        '500':
+          description: Server Error
+      security:
+        - ApiKeyAuth: []
+    delete:
+      tags:
+      - users
+      summary: Deletes a users
+      operationId: deleteUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: User id to delete
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          description: Pet not found
+      security:
+        - ApiKeyAuth: []
+  '/errors/':
+    get:
+      tags:
+      - errors
+      summary: Get all errors
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '400':
+          description: Invalid status value
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      security:
+        - ApiKeyAuth: []
+    post:
+      tags:
+      - errors
+      summary: Add a new error
+      operationId: addError
+      responses:
+        '201':
+          description: Error Created
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '405':
+          description: Invalid input
+        '500':
+          description: Server Error
+      requestBody:
+        $ref: '#/components/requestBodies/Error'
+      security:
+        - ApiKeyAuth: []
+  '/errors/{id}/':
+    get:
+      tags:
+      - errors
+      summary: Find error by id
+      description: Returns a single error
+      operationId: getErrorById
+      parameters:
+      - name: id
+        in: path
+        description: id of error to return
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '400':
+          description: Invalid ID supplied
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          description: Group not found
+        '500':
+          description: Server Error
+    put:
+      tags:
+      - errors
+      summary: Update an existing error
+      operationId: updateError
+      parameters:
+      - name: id
+        in: path
+        description: Error object that needs to be added
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Updeted successfully
+        '400':
+          description: Invalid ID supplied
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          description: Group not found
+        '405':
+          description: Validation exception
+        '500':
+          description: Server Error
+      security:
+        - ApiKeyAuth: []
+    delete:
+      tags:
+      - errors
+      summary: Deletes a error
+      operationId: deleteError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Error id to delete
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          description: User not found
+      security:
+        - ApiKeyAuth: []
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+  schemas:
+    Auth:
+      type: object
+      properties:
+        token:
+          type: string
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        email:
+          type: string
+          format: e-mail
+        password:
+          type: string
+    Error:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        enviroment:
+          type: string
+        level:
+          type: string
+        log:
+           type: string
+  requestBodies:
+    User:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+      description: User object that needs to be added to the store
+      required: true
+    Error:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: List of errors object
+      required: true
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

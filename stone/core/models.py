@@ -8,13 +8,12 @@ from stone.core.managers import CustomUserManager
 ENVIROMENTS = [
     ('production', 'production'),
     ('homologation', 'homologation'), 
-    ('dev', 'dev')
-    ]
+    ('dev', 'dev')]
+
 LEVELS = [
     ('error', 'error'),
     ('warning', 'warning'),
-    ('debug', 'dubug')
-    ]
+    ('debug', 'dubug')]
 
 
 class Error(models.Model):
