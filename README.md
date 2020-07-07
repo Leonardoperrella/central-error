@@ -72,6 +72,7 @@ python manage.py migrate
 
 ### EndPoints and Verbs API
 
+```
 |---------------------------------------|
 | EndPoints         | Verbs             |
 |---------------------------------------|
@@ -81,3 +82,4 @@ python manage.py migrate
 | api/errors/       | GET, POST         |
 | api/errors/{id}/  | GET, PUT, DELETE  |
 |---------------------------------------|
+```
